@@ -6,7 +6,6 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import StarIcon from '@mui/icons-material/Star';
 import PersonIcon from '@mui/icons-material/Person';
 import InfoIcon from '@mui/icons-material/Info';
-import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import MailIcon from '@mui/icons-material/Mail';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
