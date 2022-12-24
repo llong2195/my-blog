@@ -14,6 +14,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { LikeModule } from './like/like.module';
 import * as path from 'path';
 import { TagModule } from './tag/tag.module';
+import { APP_FILTER } from '@nestjs/core';
+import { AllExceptionFilter } from './filter/exception.filter';
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -49,6 +52,7 @@ import { TagModule } from './tag/tag.module';
     TokenModule,
     AuthorizationModule,
     FileModule,
+    LoggerModule,
     ServeStaticModule.forRoot({
       rootPath: path.resolve(__dirname, 'static'),
     }),
@@ -56,10 +60,12 @@ import { TagModule } from './tag/tag.module';
     TagModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionFilter,
+    },
+  ],
 })
 export class AppModule {
-  constructor(private connection: Connection) {
-    console.log(connection.isConnected);
-  }
 }

@@ -43,18 +43,22 @@ export class SecurityController {
 
   @UsePipes(ValidationPipe)
   @Post('/login')
-  async login(@Body() loginUserDto: LoginUserDto, @Res() res) {
+  async login(@Body() loginUserDto: LoginUserDto, @Res({ passthrough: true }) res) {
     const userData = await this.securityService.login(loginUserDto);
     res.cookie('refreshToken', userData.refreshToken, {
       maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
     });
+    console.log({...res.cookie});
+    
     res.json(userData);
   }
 
   @UseGuards(AuthGuard)
   @Delete('/logout')
-  async logout(@Req() req, @Res() res) {
+  async logout(@Req() req, @Res({ passthrough: true }) res) {
+    console.log({...req.cookies});
+    
     const { refreshToken } = req.cookies;
     if (!refreshToken) {
       throw new HttpException('Logged out', HttpStatus.BAD_REQUEST);
