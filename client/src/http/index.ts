@@ -1,17 +1,18 @@
-import axios from "axios";
-import { AuthResponse } from "../types/auth-response";
+import axios from 'axios';
+import { AuthResponse } from '../types/auth-response';
 
 //export const API_URL = "https://deploy-nest-react-blog-app.herokuapp.com";
-export const API_URL = "http://localhost:5000";
+export const API_URL =
+  process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
 
 const api = axios.create({
-  withCredentials: true,
+  // withCredentials: true,
   baseURL: API_URL,
 });
 
 api.interceptors.request.use((config) => {
   // @ts-ignore
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
   return config;
 });
 
@@ -29,13 +30,13 @@ api.interceptors.response.use(
       originalRequest._isRetry = true;
       try {
         const response = await axios.get<AuthResponse>(
-          `${API_URL}/auth/refresh`,
-          { withCredentials: true }
+          `${API_URL}/auth/refresh`
+          // { withCredentials: true }
         );
-        localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem('token', response.data.accessToken);
         return api.request(originalRequest);
       } catch (e) {
-        console.log("Unauthorized");
+        console.log('Unauthorized');
       }
     }
     throw error;
