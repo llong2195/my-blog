@@ -1,15 +1,14 @@
-import {IsNotEmpty, IsString} from "class-validator";
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class TagDto{
+export class TagDto {
+  @IsString({ message: 'Name must be string' })
+  @IsNotEmpty()
+  readonly name: string;
 
-    @IsString({message: 'Name must be string'})
-    @IsNotEmpty()
-    readonly name: string;
+  @IsString({ message: 'Description must be string' })
+  @IsNotEmpty()
+  readonly description: string;
 
-    @IsString({message: 'Description must be string'})
-    @IsNotEmpty()
-    readonly description: string;
-
-    @IsNotEmpty()
-    readonly color: string;
+  @IsNotEmpty()
+  readonly color: string;
 }

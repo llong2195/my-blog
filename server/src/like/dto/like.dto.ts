@@ -1,4 +1,4 @@
-export class LikeDto{
-    readonly userId: number;
-    readonly postId: number;
+export class LikeDto {
+  readonly userId: number;
+  readonly postId: number;
 }
