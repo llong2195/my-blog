@@ -7,7 +7,7 @@ import { UserService } from '../user/user.service';
 import { PostService } from '../post/post.service';
 import { LikeService } from './like.service';
 import { LikeController } from './like.controller';
-import { AuthorizationModule } from '../authorization/authorization.module';
+import { AuthorizationModule } from '../authorization/auth.module';
 
 @Module({
   imports: [

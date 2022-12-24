@@ -21,7 +21,7 @@ import { LoginUserDto } from '../user/dto/login.user.dto';
 import { UpdateUserDto } from '../user/dto/update-user.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { UserService } from '../user/user.service';
-import { AuthGuard } from '../authorization/auth.guard';
+import { AuthGuard } from './auth.guard';
 
 @Controller('auth')
 export class SecurityController {

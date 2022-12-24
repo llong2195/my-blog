@@ -7,9 +7,8 @@ import { User } from './user/user.entity';
 import { PostModule } from './post/post.module';
 import { CommentModule } from './comment/comment.module';
 import { UserService } from './user/user.service';
-import { SecurityModule } from './security/security.module';
 import { TokenModule } from './token/token.module';
-import { AuthorizationModule } from './authorization/authorization.module';
+import { AuthorizationModule } from './authorization/auth.module';
 import { FileModule } from './file/file.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { LikeModule } from './like/like.module';
@@ -47,7 +46,6 @@ import { TagModule } from './tag/tag.module';
     UserModule,
     PostModule,
     CommentModule,
-    SecurityModule,
     TokenModule,
     AuthorizationModule,
     FileModule,
